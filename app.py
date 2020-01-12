@@ -1,20 +1,21 @@
 import requests
 
-from flask import Flask
+from flask import Flask, request
 from twilio.twiml.messaging_response import MessagingResponse
 
 app = Flask(__name__)
 
-@app.route('/bot', methods=['POST'])
+@app.route('/bot', methods=['POST', 'GET'])
 def bot():
     incoming_msg = request.values.get('Body', '').lower()
     resp = MessagingResponse()
+    msg = resp.message()
     responded = False
     if 'quote' in incoming_msg:
         r = requests.get('https://api.quotable.io/random')
         if r.status_code == 200:
             data = r.json()
-            quote = f'{data["content"]} ({data["author"]})'
+            quote = '%s (%s)' % (data["content"], data["author"])
         else:
             quote = 'I could not retrieve a quote at this time, sorry.'
         msg.body(quote)
@@ -26,3 +27,7 @@ def bot():
         msg.body('I only know about famous quotes and cats, sorry!')
 
     return str(resp)
+
+
+if __name__ == '__main__':
+    app.run()
