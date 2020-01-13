@@ -11,6 +11,6 @@ RUN pip3 install -r requirements.txt
 
 EXPOSE 5000
 
-ENTRYPOINT [ "python" ]
+# ENTRYPOINT [ "python" ]
 
-CMD [ "app.py" ]
+CMD [ "python", "app.py" ]
