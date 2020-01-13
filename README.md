@@ -6,7 +6,7 @@ Please reference the aforementioned link for instructions and HOWTOs.
 
 I've just added a WSGI server and a Dockerfile for convenience.
 
-The docker container is on https://hub.docker.com as `giupo/whatsapp-bot`, you can run it as :
+The docker container is on https://hub.docker.com/repository/docker/giupo/whatsapp-bot as `giupo/whatsapp-bot`, you can run it as :
 ```
 docker run -p 5000:5000 giupo/whatsapp-bot
 ```
